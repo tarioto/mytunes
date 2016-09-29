@@ -27,6 +27,11 @@ var SongQueue = Backbone.Collection.extend({
       this.remove(song);
     });
 
+    this.on('enqueue', function(song) {
+      console.log('queued in SongQueue');
+      this.add(song);
+    });
+
   },
 
   playFirst: function() {
