@@ -23,12 +23,13 @@ var SongQueue = Backbone.Collection.extend({
       }
     });
 
-    this.on('dequeue', this.remove);
+    this.on('dequeue', function(song) {
+      this.remove(song);
+    });
 
   },
 
   playFirst: function() {
-    console.log(this.at(0));
     this.at(0).play();
   }
 
