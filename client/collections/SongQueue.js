@@ -15,19 +15,21 @@ var SongQueue = Backbone.Collection.extend({
       }
     });
 
-    this.on('ended', collection.remove(this));
-      // this.remove(this.at(0)));
-      // remove());
-      // console.log(this));
-    // function(song) {
-    //   console.log(song);
-    //   this.remove(song);
-    //   // this.model.dequeue;
-    // });
+    this.on('ended', function() {
+      var removeThis = this.at(0);
+      this.remove(removeThis);
+      if (this.length > 0) {
+        this.playFirst();
+      }
+    });
+
+    this.on('dequeue', this.remove);
+
   },
 
   playFirst: function() {
-
+    console.log(this.at(0));
+    this.at(0).play();
   }
 
 });
